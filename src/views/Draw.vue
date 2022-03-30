@@ -3,7 +3,8 @@
 		<main>
 			<!-- <img alt="Vue logo" src="../assets/logo.png"> -->
 			<section class="draw">
-				<h2>Hi, {{ getUserName }}</h2>
+				<h2>Привет, {{ getUserName }}!</h2>
+				<p>нарисуй что-нибудь</p>
 				<div class="draw-panel">
 					<ColorControls @pick-color="pickColor" @erase-color="eraseColor" />
 					<div
@@ -28,7 +29,7 @@
 							:class="{ warning: this.warning }"
 						/>
 
-						<button class="button" @click="saveUserImg">Commit</button>
+						<button class="button" @click="saveUserImg">Готово!</button>
 					</div>
 				</div>
 			</section>
@@ -45,8 +46,8 @@ export default {
 	data() {
 		return {
 			output: null,
-			color: "#032e63",
 			dragging: false,
+			color: "#38c0dc",
 			title: "",
 			imageSrc: null,
 			imgFile: null,
@@ -123,12 +124,17 @@ export default {
 .draw {
 	display: flex;
 	flex-direction: column;
-	gap: 40px;
+	gap: 20px;
+	align-items: center;
+}
+
+p {
+	margin-bottom: 30px;
 }
 
 .draw-panel {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	gap: 40px;
 }
 
@@ -137,6 +143,7 @@ export default {
 	grid-template-columns: repeat(16, 1fr);
 	align-self: center;
 }
+
 .pixel {
 	background-color: $dark;
 	border: 1px solid #333;
@@ -150,6 +157,7 @@ export default {
 	flex-direction: column;
 	align-items: center;
 	gap: 20px;
+	width: 25%;
 }
 .output-img {
 	width: 160px;

@@ -1,31 +1,34 @@
 <template>
-	<base-popup :show="!!error" @close="gotIt" title="Ошибка доступа">
-		<p>{{ serverMessage }}</p>
-	</base-popup>
-	<base-popup :show="isLoading" title="Authenticating..." fixed>
-		<base-spinner></base-spinner>
-	</base-popup>
-	<form @submit.prevent="auth">
-		<h1>Auth</h1>
-		<input
-			type="text"
-			placeholder="username"
-			v-model="username"
-			v-if="this.mode === 'signup'"
-			required
-		/>
-		<input type="email" placeholder="email" v-model="email" />
-		<input type="password" placeholder="password" v-model="password" />
-		<button type="submit" class="base-button base-button--bright">
-			{{ submitButtonName }}
-		</button>
-		<p>
-			{{ switchText }}
-			<button type="button" @click="switchAuthMode">
-				{{ switchButtonName }}
+	<div class="wrapper">
+		<base-popup :show="!!error" @close="gotIt" title="Ошибка доступа">
+			<p>{{ serverMessage }}</p>
+		</base-popup>
+		<base-popup :show="isLoading" title="Authenticating..." fixed>
+			<base-spinner></base-spinner>
+		</base-popup>
+		<form @submit.prevent="auth" class="auth">
+			<img src="@/assets/pixelgram.png" alt="" />
+			<h1>Pixelgram</h1>
+			<input
+				type="text"
+				placeholder="username"
+				v-model="username"
+				v-if="this.mode === 'signup'"
+				required
+			/>
+			<input type="email" placeholder="email" v-model="email" />
+			<input type="password" placeholder="password" v-model="password" />
+			<button type="submit" class="button">
+				{{ submitButtonName }}
 			</button>
-		</p>
-	</form>
+			<p>
+				{{ switchText }}
+				<button type="button" class="link" @click="switchAuthMode">
+					{{ switchButtonName }}
+				</button>
+			</p>
+		</form>
+	</div>
 </template>
 
 <script>
@@ -95,6 +98,7 @@ export default {
 				if (this.mode === "login") {
 					await this.$store.dispatch("login", authData);
 					await this.$store.dispatch("getUserName");
+					await this.$store.dispatch("fetchNotifications");
 					this.$router.replace("/draw");
 				} else {
 					await this.$store.dispatch("signup", authData);
@@ -116,6 +120,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+h1 {
+	color: $accent;
+}
 .card {
 	max-width: 500px;
 	width: 100%;
@@ -131,14 +138,6 @@ export default {
 	& .button {
 		align-self: flex-end;
 	}
-}
-.invalid label {
-	color: $med-accent;
-}
-
-.invalid input,
-.invalid textarea {
-	border: 1px solid $med-accent;
 }
 
 .form-group {
@@ -159,26 +158,26 @@ label {
 	}
 }
 
-input[type="radio"] {
-	appearance: none;
-	position: absolute;
-	padding: 0;
-	margin: 0;
+.auth {
+	max-width: 400px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 40px;
+	border: 2px solid $accent;
+	border-radius: 10px;
+	// background-image: url("./../assets/pixelgram.png");
+	background-color: rgba(0, 0, 0, 0.6);
 }
 
-#male ~ label[for="male"] {
-	border: 1px solid $man;
-	flex-grow: 1;
+button[type="submit"] {
+	margin-bottom: 30px;
 }
-#male:checked ~ label[for="male"] {
-	background-color: $man;
+p {
+	align-self: center;
 }
-
-#female ~ label[for="female"] {
-	border: 1px solid $lady;
-	flex-grow: 1;
-}
-#female:checked ~ label[for="female"] {
-	background-color: $lady;
+button {
+	align-self: stretch;
 }
 </style>

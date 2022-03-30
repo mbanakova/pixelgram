@@ -6,16 +6,13 @@ $black-accent: #0e3d35;
 $dark-accent: #105a4d;
 $med-accent: #118872;
 $accent: #378c17;
-$bright: #05d8b2;
 
-$warning: #ce471d;
+$crimson: crimson;
 $light: #cfe9f7;
 $focus: #ecf4ff;
 $grey: #8d9b9f;
 $black: #000000;
 $white: #ffffff;
-$man: #c0deff;
-$lady: #ffdbf5;
 
 $tr: all 0.3s ease-in-out;
 
@@ -62,10 +59,11 @@ body {
 .wrapper {
 	max-width: 1240px;
 	width: 100%;
-	padding: 0 20px;
+	padding: 40px 20px;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 }
 
 main {
@@ -112,7 +110,7 @@ main {
 }
 
 h1 {
-	margin: 0 auto;
+	margin: 0;
 	font-size: 26px;
 	line-height: 110%;
 	align-self: center;
@@ -127,7 +125,7 @@ h1 {
 }
 
 h2 {
-	margin: 0 auto;
+	margin: 0;
 	font-size: 24px;
 	line-height: 110%;
 
@@ -139,9 +137,11 @@ h2 {
 		font-size: 20px;
 	}
 }
-
+p {
+	margin: 0;
+}
 h3 {
-	margin: 0 auto;
+	margin: 0;
 	font-size: 22px;
 	line-height: 110%;
 	@media (max-width: $tablet) {
@@ -163,12 +163,13 @@ input,
 textarea {
 	display: block;
 	width: 100%;
-	border: 1px solid $bright;
-	color: $bright;
+	border: 1px solid $accent;
+	color: $accent;
 	font-family: "Roboto", sans-serif;
 	padding: 10px;
 	transition: $tr;
-	background-color: $dark;
+	background-color: $navy;
+	outline: none;
 }
 
 input[type="radio"] {
@@ -176,13 +177,8 @@ input[type="radio"] {
 	width: auto;
 	border: none;
 }
-
 .invalid label {
 	color: $med-accent;
-}
-
-.invalid input {
-	border: 1px solid $med-accent;
 }
 
 .button {
@@ -203,4 +199,16 @@ input[type="radio"] {
 	&:active {
 		background-color: darken($accent, 15%);
 	}
+}
+
+.link {
+	color: $accent;
+	background-color: transparent;
+	padding: 0;
+	border: none;
+	font-family: "Roboto", sans-serif;
+	cursor: pointer;
+	transition: $tr;
+	text-decoration: underline;
+	font-size: inherit;
 }

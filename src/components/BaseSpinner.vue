@@ -39,7 +39,7 @@
 	animation: lds-default 1.2s linear infinite;
 
 	&:nth-child(2n) {
-		background: $bright;
+		background: $accent;
 	}
 
 	&:nth-child(3n) {

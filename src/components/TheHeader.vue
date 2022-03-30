@@ -1,5 +1,5 @@
 <template>
-	<header class="header">
+	<header class="header" v-if="isAuthenticated">
 		<div class="wrappper">
 			<TheNav />
 		</div>
@@ -7,9 +7,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import TheNav from "@/components/TheNav";
 export default {
 	components: { TheNav },
+	computed: {
+		...mapGetters(["isAuthenticated"]),
+	},
 };
 </script>
 

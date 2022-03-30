@@ -86,8 +86,8 @@ header {
 		-60deg,
 		#0b4f6e,
 		#0b4f6e 10px,
-		#133957 10px,
-		#133957 20px
+		$accent 10px,
+		$accent 20px
 	);
 	color: white;
 	width: 100%;

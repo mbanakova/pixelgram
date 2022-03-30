@@ -12,6 +12,7 @@
 				/>
 			</div>
 		</div>
+
 		<div class="color-select">
 			<label for="color-select"></label>
 			<input
@@ -22,7 +23,9 @@
 				@change="pickColor"
 			/>
 		</div>
-		<button type="button" value="#14181d" @click="eraseColor">erase</button>
+		<button type="button" class="button" value="#14181d" @click="eraseColor">
+			<font-awesome icon="eraser" /> ластик
+		</button>
 	</form>
 </template>
 
@@ -31,7 +34,7 @@ export default {
 	emits: ["pickColor", "eraseColor"],
 	data() {
 		return {
-			color: "#032e63",
+			color: "#38c0dc",
 			palette: [
 				{
 					color: "white",
@@ -104,6 +107,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	width: 25%;
 }
 
 .color-picks {
